@@ -146,12 +146,24 @@
 
         public double GetDescent()
         {
-            return GetFontMatrix().TransformY(CidFont.Descriptor.Descent);
+            double descent = CidFont.GetDescent();
+            if (Math.Abs(descent) > double.Epsilon)
+            {
+                return GetFontMatrix().TransformY(descent);
+            }
+
+            return -0.25;
         }
 
         public double GetAscent()
         {
-            return GetFontMatrix().TransformY(CidFont.Descriptor.Ascent);
+            double ascent = CidFont.GetAscent();
+            if (Math.Abs(ascent) > double.Epsilon)
+            {
+                return GetFontMatrix().TransformY(ascent);
+            }
+
+            return 0.75;
         }
 
         public PdfVector GetPositionVector(int characterCode)

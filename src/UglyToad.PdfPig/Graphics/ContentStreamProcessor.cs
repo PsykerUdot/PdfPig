@@ -159,8 +159,7 @@ namespace UglyToad.PdfPig.Graphics
                         new PdfRectangle(0,
                             font.GetDescent(),
                             characterBoundingBox.Width,
-                            UserSpaceUnit.PointMultiples));
-                            //font.GetAscent() - font.GetDescent()));
+                            font.GetAscent()));
 
                 letter = new Letter(
                     unicode,

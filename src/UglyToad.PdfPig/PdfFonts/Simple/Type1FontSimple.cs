@@ -234,12 +234,55 @@
 
         public double GetDescent()
         {
-            return fontMatrix.TransformY(fontDescriptor.Descent);
+            if (Math.Abs(fontDescriptor.Descent) > double.Epsilon)
+            {
+                return fontMatrix.TransformY(fontDescriptor.Descent);
+            }
+
+            /*
+               // BobLd: Should 'fontProgram' be used
+              if (fontProgram is not null)
+              {
+                  if (fontProgram.TryGetFirst(out var t1))
+                  {
+
+                  }
+
+                  if (fontProgram.TryGetSecond(out var cffCol))
+                  {
+
+                  }
+              }
+              */
+
+            return -0.25;
         }
 
         public double GetAscent()
         {
-            return fontMatrix.TransformY(fontDescriptor.Ascent);
+            
+            if (Math.Abs(fontDescriptor.Ascent) < double.Epsilon)
+            {
+                return fontMatrix.TransformY(fontDescriptor.Ascent);
+            }
+
+            /*
+             // BobLd: Should 'fontProgram' be used
+            if (fontProgram is not null)
+            {
+                if (fontProgram.TryGetFirst(out var t1))
+                {
+
+                }
+
+                if (fontProgram.TryGetSecond(out var cffCol))
+                {
+                    
+                }
+            }
+            */
+
+            return 0.75;
         }
 
         /// <inheritdoc/>

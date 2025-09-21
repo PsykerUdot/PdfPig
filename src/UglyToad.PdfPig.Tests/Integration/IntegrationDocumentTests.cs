@@ -31,6 +31,11 @@
                         var bbox = letter.GlyphRectangle;
                         if (bbox.Height > 0)
                         {
+                            if (letter.GlyphRectangleLoose.Height <= 0)
+                            {
+                                _ = letter.GetFont().GetAscent();
+                            }
+                            
                             Assert.True(letter.GlyphRectangleLoose.Height > 0, $"Page {i + 1}");
                         }
                     }

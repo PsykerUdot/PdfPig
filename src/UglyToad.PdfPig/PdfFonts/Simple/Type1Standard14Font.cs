@@ -117,11 +117,21 @@ namespace UglyToad.PdfPig.PdfFonts.Simple
 
         public double GetDescent()
         {
+            if (Math.Abs(standardFontMetrics.Descender) < double.Epsilon)
+            {
+                return -0.25;
+            }
+
             return fontMatrix.TransformY(standardFontMetrics.Descender);
         }
 
         public double GetAscent()
         {
+            if (Math.Abs(standardFontMetrics.Ascender) < double.Epsilon)
+            {
+                return 0.75;
+            }
+
             return fontMatrix.TransformY(standardFontMetrics.Ascender);
         }
 
